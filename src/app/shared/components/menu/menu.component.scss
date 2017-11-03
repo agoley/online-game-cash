@@ -1,0 +1,46 @@
+@import '~styles/colors.scss';
+@import '~styles/icons.scss';
+@import '~styles/media.scss';
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+    li.selected {
+        color: $primary;
+        background-color: rgba(20, 20, 20, 1);
+        border-left: 1px solid $primary;
+        padding-right: 9px !important;
+    }
+
+	li.header {
+		border-bottom: 1px solid $darkgrey;
+		font-size: 18px;
+	}
+
+	li {
+		width: calc(100% - 20px);
+		display: block;
+		float: left;
+        padding: 10px;
+
+		.lame-btn {
+			border: none;
+			background: transparent;
+				
+			h3 {
+				margin: 10px 15px;
+			}
+				
+			&:focus {
+				outline: none;
+			}
+		}	
+
+		&:hover {
+			background-color: rgba(20, 20, 20, 1);
+			cursor: default;
+		}
+	}
+}

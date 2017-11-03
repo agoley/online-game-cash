@@ -1,0 +1,247 @@
+@import '~styles/colors.scss';
+@import '~styles/icons.scss';
+@import '~styles/media.scss';
+
+.--left {
+    float: left;
+}
+
+.toast {
+	position: fixed;
+	z-index: 10;
+	width: 200px;
+	height: 150px;
+	background-color: rgb(20, 20, 20);
+	color: #fff;
+	text-align: center;
+	top: 300px;
+	left: -5px;
+	border-radius: 3px;
+	border: 2px solid #fff;
+
+	.toast-header {
+		.toast-header-content {
+			padding: 5px;
+			font-size: 20px;
+
+			i {
+				position: relative;
+				top: 3px;
+			}
+		}
+	}
+
+	.toast-body {
+		.toast-btn {
+			padding: 10px 15px;
+
+			&:hover {
+				cursor: pointer;
+				color: $mediumgrey;
+			}
+		}
+	}
+
+	.toast-btn {
+		background-color: transparent;
+		color: #fff;
+		font-size: 16px;
+		text-align: left;
+	}
+}
+
+.chip {
+	background-color: rgb(20,20,20);
+	color: #fff;
+	border-radius: 10px;
+	float: right;
+	font-size: 12px;
+
+	p {
+		padding: 4px;
+	}
+}
+
+.game-details {
+	width: 100%;
+}
+
+.detailed {
+	border: 2px solid #fff;
+	white-space: normal;
+	z-index: 3;
+}
+
+.detailed:after {
+	content: "";
+	position: absolute;
+	bottom: 8px;
+	right: calc(50% - 7px);
+	border-style: solid;
+	border-width:  7px 7px 0;
+	border-color: #fff transparent #fff transparent;
+	display: block;
+	width: 0;
+	z-index: 0;
+}
+
+.action-btn {
+	position: absolute;
+	z-index: 4;
+	width: 140px;
+	background-color: rgba(255, 255, 255, 0.90);
+	color: rgb(20,20,20);
+	font-size: 18px;
+	text-align: left;
+
+	&:hover {
+		cursor: pointer;
+		background-color: rgba(255, 255, 255, 1);
+	}
+}
+
+.action-btn:after {
+	content: "";
+	position: absolute;
+	bottom: -3px;
+	right: -3px;
+	border-style: solid;
+	border-width:  0 3px 3px;
+	border-color:  transparent transparent transparent rgba(255, 255, 255, 0.90);
+	display: block;
+	width: 0;
+	z-index: 0;
+}
+
+.details-btn {
+	height: 45px;
+	width: 100%;
+	bottom: 15px;
+	right: 0;
+	background-color: rgba(20, 20, 20, 0.70);
+	color: $primary;
+	opacity: 0.9;
+	text-align: center;
+
+	&:hover {
+		background-color: rgba(20, 20, 20, 0.75);
+		color: $primary;
+		opacity: 1;
+	}
+}
+
+.details-btn:after {
+	border-color:  transparent transparent transparent rgba(20, 20, 20, 0.90);
+}
+
+.buy-btn {
+	top: 90px;
+	right: 0px;
+}
+
+.sell-btn {
+	top: 120px;
+	right: 0px;
+}
+
+.trade-btn {
+	top: 150px;
+	right: 0px;
+}
+
+.cover {
+	height: 250px;
+	position: relative;
+	display: block;
+}
+
+.filter {
+    color: $lightgrey;
+    padding-left: 55px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    font-weight: 8px;
+
+    button {
+        font-size: 18px;
+        background: transparent;
+        color: $lightgrey;
+        border: none;
+        padding: 15px;
+
+        i {
+            position: relative;
+            top: 2px;
+            font-size: 14px;
+        }
+
+        &:hover {
+            cursor: pointer;
+            color: $darkgrey;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+    }
+}
+
+.container {
+	overflow-x: hidden;
+}
+
+ul.row {
+	list-style: none;
+	width: 100%;
+	display: block;
+	position: relative;
+	white-space: nowrap;
+	overflow-x: visible;
+	transition-duration: 100ms;
+
+	li {
+		position: relative;
+		display: inline-block;
+		padding: 15px 3px;
+		vertical-align: middle;
+		white-space: normal;
+	}
+}
+
+.selected-filter-option {
+    background-color: #DDDDDD;
+    border-left: 1px solid #666666;
+    padding-right: 9px !important;
+}
+
+.console-menu:before {
+	content: "";
+	position: absolute;
+	top: -9px;
+	left: 126px;
+	border-style: solid;
+	border-width: 0 9px 9px;
+	border-color: #FFFFFF transparent;
+	display: block;
+	width: 0;
+	z-index: 1;
+}
+
+.console-menu:after {
+	content: "";
+	position: absolute;
+	bottom: 233px;
+	left: 125px;
+	border-style: solid;
+	border-width:  0 10px 10px;
+	border-color:  $darkgrey transparent;
+	display: block;
+	width: 0;
+	z-index: 0;
+}
+
+.game-spacer {
+	content: none;
+	height: 1000px;
+}

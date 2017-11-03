@@ -1,0 +1,23 @@
+<div class="toolbar">
+    <!-- logo -->
+    <img class="logo" src="./assets/images/logos/logo-white.png">
+    <!-- searchbar component -->
+    <app-search-bar class="browse-bar"></app-search-bar>
+    <!-- float right after this point -->
+    <div class="options">
+        <a *ngIf="!user" routerLink="/login" routerLinkActive="active">
+            <button class="sign-in-btn">
+                Sign in
+            </button>
+        </a>
+        <button *ngIf="user" (click)="toggleMenu()" class="menu-btn options-btn">
+             <md-icon class="material-icons md-24">menu</md-icon>
+        </button>
+        <button class="cart-btn header-icon-btn">
+             <md-icon (click)="cart($event)" class="material-icons md-24 cart-icon">shopping_cart</md-icon>
+        </button>
+        <shared-menu *ngIf="isMenu" class="menu-header" [@myAnimation]="isMenu" [showing]="isMenu" [items]="menuOptions" [selected]="null"
+            (close)="menuClose()" [ngStyle]="{ 'height': '125px' }" (selection)="onMenuSelect($event)" [headers]="user.email">
+        </shared-menu>
+    </div>
+</div>

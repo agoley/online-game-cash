@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let item of items" (click)="onSelect(item)"  [ngClass]="{ 'selected': isSelected(item), 'header': isHeader(item) }">
+    {{item}}
+  </li>
+</ul>

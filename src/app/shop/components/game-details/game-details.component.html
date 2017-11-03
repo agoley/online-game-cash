@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="col">
+    <div class="game-info-container">
+      <div class="game-info">
+        <h2>{{game.title}}</h2>
+        <ul class="game-info-list" *ngIf="view == 'details'" [@fade]="view == 'details'">
+          <li>
+            Platform: {{game.console}}
+          </li>
+          <li>
+            Developer: {{game.developer}}
+          </li>
+          <li>
+            Release Date: {{game.release_date | date:'shortDate'}}
+          </li>
+          <li>
+            Genre/s: {{game.genre}}
+          </li>
+        </ul>
+        <ul class="game-info-list" *ngIf="view == 'summary'" [@fade]="view == 'summary'">
+          <li>
+            {{game.summary}}
+          </li>
+        </ul>
+        <ul class="game-info-list">
+          <li>
+            <button [ngClass]="{'selected-action': action == 'buy'}" class="game-btn stripped-btn" (click)="action = 'buy'">Buy ${{game.sell_price}}</button>
+          </li>
+          <li>
+            <button [ngClass]="{'selected-action': action == 'sell'}" class="game-btn stripped-btn" (click)="action = 'sell'">Sell ${{game.sell_price}}</button>
+          </li>
+          <li>
+            <button [ngClass]="{'selected-action': action == 'trade'}" class="game-btn stripped-btn" (click)="action = 'trade'">Trade (gc) {{game.sell_price}}</button>
+          </li>
+        </ul>
+      </div>
+      <button class="secondary-btn stripped-btn tab-btn" *ngIf="view == 'summary'" (click)="view = 'details'">Details</button>
+      <button class="secondary-btn stripped-btn tab-btn" *ngIf="view == 'details'" (click)="view = 'summary'">Summary</button>
+      <button class="primary-btn stripped-btn add-btn" (click)="onAdd()">Add to Cart</button>
+    </div>
+  </div>
+  <div class="col">
+    <div class="game-img-container">
+      <div class="mask gradient"></div>
+      <button class="close-btn stripped-btn" (click)="onClose()"><i class="material-icons">&#xE14C;</i></button>
+      <img class="game-detail-img" src="{{getGamePlayImagePath()}}" />
+    </div>
+  </div>
+</div>

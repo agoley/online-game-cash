@@ -1,0 +1,64 @@
+<!--import a them to allow the MD components to work -->
+<div class="toast" *ngIf="showToast" [@toast-in]="showToast">
+  <div class="toast-header">
+    <div class="toast-header-content">
+      your cart has been updated <i class="material-icons">&#xE8DC;</i>
+    </div>
+  </div>
+    <div class="toast-body">
+      <button class="toast-btn stripped-btn" (click)="onCloseToast()">continue shopping</button>
+      <button class="toast-btn stripped-btn" (click)="onCloseToast()">proceed to checkout</button>
+    </div>
+</div>
+<div class="filter">
+  ({{games.length}}) games
+  <button (click)="toggleConsoleFilter()">
+    console 
+    <i *ngIf="!filteringByConsole" class="material-icons" >&#xE313;</i>
+    <i *ngIf="filteringByConsole" class="material-icons">&#xE316;</i>
+  </button>
+  <button (click)="toggleGenreFilter()">
+    genre 
+    <i *ngIf="!filteringByGenre" class="material-icons" >&#xE313;</i>
+    <i *ngIf="filteringByGenre" class="material-icons">&#xE316;</i>
+  </button>
+
+  <shared-menu *ngIf="filteringByConsole" class="menu" [showing]="filteringByConsole" [items]="consoleOptions" [selected]="getSelectedConsoles()"
+    (close)="menuClose()" [ngStyle]="{ 'height': '273px', 'left': '20px' }" (selection)="onConsoleSelect($event)" [headers]="null"
+    [@fade]="filteringByConsole">
+  </shared-menu>
+
+  <shared-menu *ngIf="filteringByGenre" class="menu" [showing]="filteringByGenre" [items]="genreOptions" [selected]="getSelectedGenres()"
+    (close)="menuClose()" [ngStyle]="{ 'height': '235px', 'left': '126px' }" (selection)="onGenreSelect($event)" [headers]="null"
+    [@fade]="filteringByGenre">
+  </shared-menu>
+</div>
+
+<shared-square-hero (reset)="onReset($event)" *ngIf="games.length == 0 && showGame"></shared-square-hero>
+
+<div>
+  <div class="container" *ngFor="let row of rows; let r = index">
+    <ul class="row">
+      <li *ngFor="let game of row; let i = index">
+        <div [ngClass]="{ 'detailed': isGameInDetail(game) }" *ngIf="shouldGameBeShowing(game)" (mouseenter)="onMouseEnter(game, $event)"
+          (mouseleave)="onMouseLeave(game)">
+          <button *ngIf="isGameActive(game)" class="buy-btn action-btn stripped-btn" md-button (click)="onAdd(game, 'userBuy')">
+            buy <span class="chip"><p>${{game.sell_price}}</p></span>
+          </button>
+          <button *ngIf="isGameActive(game)" class="sell-btn action-btn stripped-btn" (click)="onAdd(game, 'userSell')">
+            sell <span class="chip"><p>${{game.buy_price}}</p></span>
+          </button>
+          <button *ngIf="isGameActive(game)" class="trade-btn action-btn stripped-btn" (click)="onAdd(game, 'userTrade')">
+            trade <span class="chip"><p>${{game.sell_price + 2}}</p></span>
+          </button>
+          <button *ngIf="isGameActive(game)" (click)="showDetailsForGame(game)" class="details-btn action-btn stripped-btn">
+            <i class="material-icons md-36">&#xE5CF;</i>
+          </button>
+          <img [ngStyle]="{'width': gameWidth + 'px'}" (@gameState.done)="animationDone($event, r, i, game)" [@gameState]="game.state"
+            src="{{getImagePath(game)}}" (@gameState.start)="animationStart($event, i, r)" class="cover">
+        </div>
+      </li>
+    </ul>
+    <shop-game-details (close)="onDetailsClose()" (add)="onAdd(gameInDetail, $event)" [@fade]="shouldDetailsBeShowing(row)" *ngIf="shouldDetailsBeShowing(row)" [game]="gameInDetail"></shop-game-details>
+  </div>
+</div>

@@ -1,0 +1,170 @@
+@import '~styles/colors.scss';
+@import '~styles/icons.scss';
+
+.toolbar {
+	width: 100%;
+    white-space: nowrap;
+	min-width: 850px;
+	margin: 0;
+	padding: 0;
+}
+
+.logo {
+	display: inline-block;
+	width: 120px;
+	height: 130px;
+}
+
+.browse-bar {
+	display: inline-block;
+	width: 40%;
+	min-width: 350px;
+	vertical-align: top;
+	padding-top: 15px;
+}
+
+.options {
+	float: right;
+	vertical-align: top;	
+	width: 300px;
+}
+
+.sign-in-btn {
+    min-width: 60px;
+    border-radius: 0px;
+    vertical-align: top; 
+    line-height: 10px;  
+    background: $primary;
+    color: white;
+    border-style: none; 
+	padding: 10px 15px;
+	float: right;
+	margin: 15px;
+	font-size: 12pt;	
+
+     &:focus {
+        outline: none;
+    }
+
+	&:hover {
+		background-color: $primary;
+	}
+}
+
+.menu-btn {
+	float: right;
+	color: $lightgrey;
+    background: transparent;
+    border: none;
+    cursor: default;
+    font-size: 12pt;
+    margin: 15px;
+
+	&:focus {
+    	border-color: $primary;
+    	outline: none;
+	}
+
+	&:hover {
+		color: $darkgrey;
+	}
+}
+
+.cart-btn {
+	color: $darkgrey;
+    background: transparent;
+    border: none;
+    cursor: default;
+    font-size: 12pt;
+    margin: 15px;
+	float: right;
+
+	&:focus {
+    	border-color: $primary;
+    	outline: none;
+	}
+}
+
+
+.menu-header {
+	position: absolute;
+	padding: 0;
+	float: right;
+	width: 250px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: $darkgrey;
+	margin: 5px 30px;
+	color: $lightgrey;
+	top: 50px;
+	background-color: rgba(20, 20, 20, 0.95);
+
+	h3 {
+		margin: 15px;
+		color: $darkgrey;
+	}
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		li {
+			width: 100%;
+			display: block;
+			float: left;
+
+			.lame-btn {
+				border: none;
+				background: transparent;
+				
+				h3 {
+					margin: 10px 15px;
+				}
+				
+				&:focus {
+					outline: none;
+				}
+			}	
+
+			&:hover {
+				background-color: $lightgrey;
+			}
+		}
+
+		li:nth-child(1) {
+			border-bottom: 1px solid $mediumgrey;
+
+			&:hover {
+				background-color: #fff;
+			}
+		}
+	}
+}
+
+.menu-header:before {
+	content: "";
+	position: absolute;
+	top: -9px;
+	left: 226px;
+	border-style: solid;
+	border-width: 0 9px 9px;
+	border-color: rgba(20, 20, 20, 9.5) transparent;
+	display: block;
+	width: 0;
+	z-index: 1;
+}
+
+.menu-header:after {
+	content: "";
+	position: absolute;
+	bottom: 125px;
+	left: 225px;
+	border-style: solid;
+	border-width:  0 10px 10px;
+	border-color:  $darkgrey transparent;
+	display: block;
+	width: 0;
+	z-index: 0;
+}
+

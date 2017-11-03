@@ -1,0 +1,50 @@
+<div class="hero">
+  <div class="center">
+    <div class="form-container">
+      <div class="context">
+        <ul>
+          <li>
+            <a routerLink="/shop" routerLinkActive="active">
+              <img class="logo" src="./assets/images/logos/logo-white.png">
+            </a>
+          </li>
+          <li>
+            <h3 class="label">Sign in</h3>
+            <p class="label">to onlinegamecash.com</p>
+          </li>
+        </ul>
+      </div>
+      <form [formGroup]="loginForm">
+        <div class="form-row">
+          <md-input-container class="input-container">
+            <input mdInput formControlName="email" placeholder="Email">
+          </md-input-container>
+          <p class="alert" *ngIf="failed && loginForm.controls.email.errors">a valid email address is required</p>
+        </div>
+        <div class="form-row">
+          <md-input-container class="input-container">
+            <input mdInput type="password" formControlName="password" placeholder="Password">
+          </md-input-container>
+          <p class="alert" *ngIf="failed && loginForm.controls.password.errors">password must be at least 8 charecters</p>
+        </div>
+        <div class="form-row">
+          <div class="input-container">
+            <button md-button (click)="onSubmit()">Continue</button>
+          </div>
+        </div>
+        <div class="input-container">
+          <a routerLink="/signup" routerLinkActive="active">
+            <button class="create" md-button>Need to create an account?</button>
+          </a>
+        </div>
+      </form>
+    </div>
+    <div class="login-footer">
+      <ul>
+        <li><button md-button>about</button></li>
+        <li>|</li>
+        <li> <button md-button>terms</button></li>
+      </ul>
+    </div>
+  </div>
+</div>
