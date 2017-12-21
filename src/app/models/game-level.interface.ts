@@ -7,4 +7,5 @@ export interface IGameLevel {
     horizontallyMovingObstacles: HTMLCollectionOf<Element> | null;
     trackItms: HTMLCollectionOf<Element> | null;
     chips: HTMLCollectionOf<Element> | null;
+    stats: any;
 }

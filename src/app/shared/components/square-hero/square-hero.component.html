@@ -68,8 +68,8 @@
     </svg>
 
     <button class="col menu-btn" #startBtn (click)="start()">
-    start 
-  </button>
+      start
+    </button>
   </div>
 
   <div class="game-view-port" [hidden]="view === 'title'">
@@ -109,6 +109,40 @@
         stroke-linecap="square" stroke-miterlimit="3" />
       <path d=" M 98 56 Q 70.106 58.93 64 69" fill="none" vector-effect="non-scaling-stroke" stroke-width="3" stroke="rgb(0,0,0)"
         stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3" />
+    </svg>
+
+    <svg class="nemisis nemisis-forward-hit track-itm bounce-vertical hidden wall" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      style="isolation:isolate" viewBox="-2 -1.5 103.5 103" width="103.5" height="103">
+      <g id="null">
+        <path d=" M 100 100 L 0 100 L 0 0 L 100 0 L 100 100 Z " fill="rgb(231,129,2)" vector-effect="non-scaling-stroke" stroke-width="1"
+          stroke="rgb(255,255,255)" stroke-opacity="100" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"
+        />
+        <line x1="2.5" y1="17.5" x2="18" y2="17.5" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,0,0)" stroke-opacity="100"
+          stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3" />
+        <path d=" M 2.5 57.5 Q 30.394 60.43 36.5 70.5" fill="none" vector-effect="non-scaling-stroke" stroke-width="3" stroke="rgb(0,0,0)"
+          stroke-opacity="100" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3" />
+        <path d=" M 20 31.5 C 20 25.705 15.855 21 10.75 21 C 5.645 21 1.5 25.705 1.5 31.5 C 1.5 37.295 5.645 42 10.75 42 C 15.855 42 20 37.295 20 31.5 Z "
+          fill="rgb(235,235,235)" />
+        <path d=" M 1.5 31.5 C 1.5 29.016 3.516 27 6 27 C 8.484 27 10.5 29.016 10.5 31.5 C 10.5 33.984 8.484 36 6 36 C 3.516 36 1.5 33.984 1.5 31.5 Z "
+          fill="rgb(23,23,23)" />
+      </g>
+    </svg>
+
+    <svg class="nemisis nemisis-reverse-hit track-itm bounce-vertical hidden wall"   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="-1.5 -1.5 103.5 103"
+      width="103.5" height="103">
+      <g id="null">
+        <path d=" M 0 100 L 100 100 L 100 0 L 0 0 L 0 100 Z " fill="rgb(231,129,2)" vector-effect="non-scaling-stroke" stroke-width="1"
+          stroke="rgb(255,255,255)" stroke-opacity="100" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"
+        />
+        <line x1="97.5" y1="17.5" x2="82" y2="17.5" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,0,0)"
+          stroke-opacity="100" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3" />
+        <path d=" M 97.5 57.5 Q 69.606 60.43 63.5 70.5" fill="none" vector-effect="non-scaling-stroke" stroke-width="3" stroke="rgb(0,0,0)"
+          stroke-opacity="100" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3" />
+        <path d=" M 80 31.5 C 80 25.705 84.145 21 89.25 21 C 94.355 21 98.5 25.705 98.5 31.5 C 98.5 37.295 94.355 42 89.25 42 C 84.145 42 80 37.295 80 31.5 Z "
+          fill="rgb(235,235,235)" />
+        <path d=" M 98.5 31.5 C 98.5 29.016 96.484 27 94 27 C 91.516 27 89.5 29.016 89.5 31.5 C 89.5 33.984 91.516 36 94 36 C 96.484 36 98.5 33.984 98.5 31.5 Z "
+          fill="rgb(23,23,23)" />
+      </g>
     </svg>
     <!-- NEMISIS END -->
 
@@ -345,9 +379,14 @@
     <svg class="track" id="track" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate"
       viewBox="-0.499 0 4200 400" width="4002" height="400">
       <line class="wall g" x1="2750" y1="50" x2="4001" y2="50" vector-effect="non-scaling-stroke" stroke-width="1" stroke="rgb(255,255,255)"
-      stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3" />
+        stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3" />
+
       <line class="wall g" x1="1284" y1="50" x2="2001" y2="50" vector-effect="non-scaling-stroke" stroke-width="1" stroke="rgb(255,255,255)"
         stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3" />
+
+      <line class="wall g" x1="2100" y1="200" x2="2650" y2="200" vector-effect="non-scaling-stroke" stroke-width="1" stroke="rgb(255,255,255)"
+        stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3" />
+
       <line class="wall g" x1="404" y1="360" x2="4000" y2="360" vector-effect="non-scaling-stroke" stroke-width="1" stroke="rgb(255,255,255)"
         stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3" />
       <rect class="wall g" x="150" y="120" width="100" height="25" transform="matrix(1,0,0,1,0,0)" fill="rgb(255,255,255)" vector-effect="non-scaling-stroke"

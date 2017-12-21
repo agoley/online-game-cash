@@ -36,6 +36,7 @@ export class GameEngine implements IGameEngine {
         this.timer = new GameTimer(0);
         this.communicating = false;
         this.showReset = false;
+        this.level.stats.nemisisHP = 10;
     }
 
     start() {
@@ -50,9 +51,15 @@ export class GameEngine implements IGameEngine {
 
     gameOver() {
         setTimeout(() => {
-            this.alive = false;
             this.timer.pause();
-            this.writeMsg(this.terminal, 'ERROR! YOU HAVE FAILED.', 75, true);
+            if (this.level.track.getBoundingClientRect().right <= 300) {
+                this.timer.value -= (this.bonus * 1000);
+                this.writeMsg(this.terminal, "YOU WIN!. YOU'RE FINAL TIME IS " + this.timer.getDisplayValue(), 75, true);
+                this.alive = false;
+            } else {
+                this.alive = false;
+                this.writeMsg(this.terminal, 'ERROR! YOU HAVE FAILED.', 75, true);
+            }
         }, 0);
 
     }
@@ -149,10 +156,13 @@ export class GameEngine implements IGameEngine {
                                 if (this.alive) {
                                     el.innerHTML = '';
                                 } else {
-                                    el.innerHTML = "ERROR! YOU HAVE FAILED.";
-                                    var resestBtn = <HTMLElement>document.getElementById('resetBtn');
-                                    resestBtn.style.display = 'inline-block';
-                                    this.sunny.flash(resestBtn, 500);
+                                    if (this.level.track.getBoundingClientRect().right > 300) {
+                                        console.log('in writeMsg')
+                                        el.innerHTML = "ERROR! YOU HAVE FAILED.";
+                                        var resestBtn = <HTMLElement>document.getElementById('resetBtn');
+                                        resestBtn.style.display = 'inline-block';
+                                        this.sunny.flash(resestBtn, 500);
+                                    }
                                 }
                                 c();
                             }
@@ -181,21 +191,25 @@ export class GameEngine implements IGameEngine {
             if (nrf.classList.contains('hidden')) {
                 if (this.hero.getBoundingClientRect().left > nlf.getBoundingClientRect().right) {
                     // hero is behind the nemisis show the reverse nemisis
-                    nlf.classList.add('hidden');
                     nrf.classList.remove('hidden');
 
                     // position the nemisis
                     nrf.style.top = nlf.style.top;
+                    nrf.style.top = nlf.style.top;
+
+                    nlf.classList.add('hidden');
+
                 }
             } else if (nlf.classList.contains('hidden')) {
                 if (this.hero.getBoundingClientRect().right < nrf.getBoundingClientRect().left) {
                     // hero is in front of the nemisis show the forward nemisis
-                    nrf.classList.add('hidden');
                     nlf.classList.remove('hidden');
 
-                     // position the nemisis
+                    // position the nemisis
                     nlf.style.top = nrf.style.top;
-                    nlf.style.left= nrf.style.left;
+                    nlf.style.left = nrf.style.left;
+
+                    nrf.classList.add('hidden');
 
                 }
             }
@@ -221,7 +235,7 @@ export class GameEngine implements IGameEngine {
         this.sunny.move(this.level.track, 'left', pixels);
         for (var i = 0; i < this.level.trackItms.length; i++) {
             this.sunny.move(<HTMLElement>this.level.trackItms[i], 'left', pixels);
-            this.alignNemisis();
+            // this.alignNemisis();
         }
         // } else {
         // this.sunny.move(this.hero, 'right', 15);
@@ -247,7 +261,7 @@ export class GameEngine implements IGameEngine {
             this.sunny.move(this.level.track, 'right', pixels);
             for (var i = 0; i < this.level.trackItms.length; i++) {
                 this.sunny.move(<HTMLElement>this.level.trackItms[i], 'right', pixels);
-                this.alignNemisis();
+                // this.alignNemisis();
             }
         } else {
             // this.sunny.move(this.hero, 'left', 15);
@@ -260,7 +274,7 @@ export class GameEngine implements IGameEngine {
             if (el.classList.contains('b' + i)) {
 
                 if (el.classList.contains('bonus-1')) {
-                    this.bonus += 5;
+                    this.bonus += 2;
                 }
                 // break brick no i
                 var c0 = <HTMLElement>this.level.chips.item((i * 4));
@@ -368,10 +382,106 @@ export class GameEngine implements IGameEngine {
             var position: GamePosition = new GamePosition(rect)
             collision = this.collide(pos, position);
             if (collision.is) {
+                collision.type = 'wall';
                 if (el.classList.contains('score-up') && collision.edge === 'top') {
                     this.brickBreak(el.parentElement);
                 }
-                collision.type = 'wall';
+
+                if (el.classList.contains('nemisis') && collision.edge === 'bottom') {
+                    if (el.classList.contains('nemisis-reverse')) {
+                        var nrf = (<HTMLElement>this.level.nemisis[1]); // nemisis right facing
+                        var nrfh = (<HTMLElement>this.level.nemisis[3]); // nemisis right facing hit
+
+                        var t = nrf.style.top;
+                        var l = nrf.style.left;
+
+                        nrfh.classList.remove('hidden');
+                        nrf.classList.add('hidden');
+
+                        // position the nemisis
+                        nrfh.style.top = t;
+                        nrfh.style.left = l;
+
+                        setTimeout(() => {
+                            var t = nrfh.style.top;
+                            var l = nrfh.style.left;
+
+                            nrfh.classList.add('hidden');
+                            nrf.classList.remove('hidden');
+
+                            // position the nemisis
+                            nrf.style.top = t;
+                            nrf.style.left = l;
+
+                            if (this.level.stats.nemisisHP === 1) {
+                                for (var i = 0; i < this.level.nemisis.length; i++) {
+                                    this.sunny.fade((<HTMLElement>this.level.nemisis[i]), 0, 200, 0.1);
+                                    (<HTMLElement>this.level.nemisis[i]).classList.add('disabled');
+                                    this.sunny.fade((<HTMLElement>document.getElementsByClassName('finish-line')[0]), 0, 150, 0.1);
+                                    if ((<HTMLElement>document.getElementsByClassName('finish-line')[0]))
+                                        (<HTMLElement>document.getElementsByClassName('finish-line')[0]).remove();
+                                }
+                                this.level.stats.nemisisHP = this.level.stats.nemisisHP - 1;
+                            }
+                            this.level.stats.nemisisHP = this.level.stats.nemisisHP - 1;
+
+                        }, 50);
+
+
+
+                        // console.log(this.level.stats.nemisisHP);
+                    }
+
+                    if (el.classList.contains('nemisis-forward')) {
+                        var nlf = (<HTMLElement>this.level.nemisis[0]);
+                        var nlfh = (<HTMLElement>this.level.nemisis[2]);
+
+                        var t = nlf.style.top;
+                        var l = nlf.style.left;
+
+                        nlfh.classList.remove('hidden');
+                        nlf.classList.add('hidden');
+
+                        // position the nemisis
+                        nlfh.style.top = t;
+                        nlfh.style.left = l;
+
+                        setTimeout(() => {
+
+                            var t = nlfh.style.top;
+                            var l = nlfh.style.left;
+
+                            nlf.classList.remove('hidden');
+                            nlfh.classList.add('hidden');
+
+                            // position the nemisis
+                            nlf.style.top = t;
+                            nlf.style.left = l;
+
+                            if (this.level.stats.nemisisHP === 1) {
+                                for (var i = 0; i < this.level.nemisis.length; i++) {
+                                    this.sunny.fade((<HTMLElement>this.level.nemisis[i]), 0, 150, 0.1);
+                                    this.sunny.rotate((<HTMLElement>this.level.nemisis[i]), 1447, 2500, 'ease-out', 40);
+
+                                    (<HTMLElement>this.level.nemisis[i]).classList.add('disabled');
+                                    if ((<HTMLElement>document.getElementsByClassName('finish-line')[0]))
+                                        (<HTMLElement>document.getElementsByClassName('finish-line')[0]).remove();
+                                }
+                                this.level.stats.nemisisHP = this.level.stats.nemisisHP - 1;
+                            }
+                            this.level.stats.nemisisHP = this.level.stats.nemisisHP - 1;
+
+                        }, 50);
+
+
+
+                        // console.log(this.level.stats.nemisisHP);
+                    }
+                }
+
+                if (el.classList.contains('disabled')) {
+                    collision.type = null;
+                }
                 return collision;
                 // }
             }

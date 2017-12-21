@@ -9,6 +9,7 @@ export class GameLevel implements IGameLevel {
     deaths: HTMLCollectionOf<Element>;
     verticallyMovingObstacles: HTMLCollectionOf<Element>;
     horizontallyMovingObstacles: HTMLCollectionOf<Element>;
+    stats: any;
 
     constructor(nemisis: HTMLCollectionOf<Element>,
         track: HTMLElement,
@@ -26,6 +27,8 @@ export class GameLevel implements IGameLevel {
         this.horizontallyMovingObstacles = horizontallyMovingObstacles;
         this.trackItms = trackItms;
         this.chips = chips
+
+        this.stats = {};
     }
 
 }

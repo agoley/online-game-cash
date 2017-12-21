@@ -71,6 +71,8 @@ export class SquareHeroComponent implements AfterViewInit, OnDestroy {
 
   onReset() {
     this.reset.emit(true);
+    var resestBtn = <HTMLElement>document.getElementById('resetBtn');
+    resestBtn.style.display = 'none';
   }
 
   start() {

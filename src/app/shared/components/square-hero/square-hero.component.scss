@@ -1,391 +1,409 @@
 .game-display {
-    height: 500px;
+  height: 500px;
 }
 
-.hero-the-square-title-screen{
+.hero-the-square-title-screen {
+  position: relative;
+  top: 25px;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+
+  .col {
+    display: block;
+    margin: auto;
+  }
+
+  .green-stripe {
     position: relative;
-    top: 25px;
-    text-align: center;
-    width: 100%;
-    display: inline-block;
+    z-index: 2;
+  }
 
-    .col {
-        display: block;
-        margin: auto;
-    }
+  .green-stripe,
+  .text {
+    -webkit-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+    -o-transition: all 2s ease;
+    -ms-transition: all 2s ease;
+    transition: all 2s ease;
+  }
 
-    .green-stripe {
-        position: relative;
-        z-index: 2;
-    }
+  .text-hidden {
+    opacity: 0;
+  }
 
-    .text, .green-stripe {
-        -webkit-transition: all 2s ease;  
-        -moz-transition: all 2s ease;  
-        -o-transition: all 2s ease;  
-        -ms-transition: all 2s ease;  
-        transition: all 2s ease;
-    }
-
-    .text-hidden {
-        opacity: 0;
-    }
-
-    .green-stripe-1 {
-        height: 25px;
-        width: 25px;
-    }
+  .green-stripe-1 {
+    height: 25px;
+    width: 25px;
+  }
 }
 
 .reset-btn {
-    position: absolute;
-    top: 202px;
-    left: 230px;
-    z-index: 11;
-    display: none;
+  position: absolute;
+  top: 202px;
+  left: 230px;
+  z-index: 11;
+  display: none;
 }
 
 .game-view-port {
-    overflow-x: hidden;
+  overflow-x: hidden;
+  width: 100%;
+
+  .game-timer {
+    position: absolute;
+    right: 25px;
+    top: 275px;
+    color: rgba(242, 242, 242, 0.75);
+  }
+
+  .game-score-board {
+    position: absolute;
+    right: 150px;
+    top: 275px;
+    color: rgba(242, 242, 242, 0.75);
+  }
+
+  .message-interface {
+    padding: 15px;
+    background-color: rgba(102, 102, 102, 0.5);
     width: 100%;
 
-    .game-timer {
-        position: absolute;
-        right: 25px;
-        top: 275px;
-        color: rgba(242, 242, 242, 0.75);
+    .message-interface-content {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+      font-family: Courier New, Courier, monospace;
+      display: block;
+
+      div {
+        display: inline-block;
+        vertical-align: top;
+        max-width: 100%;
+      }
     }
+  }
 
-     .game-score-board {
-        position: absolute;
-        right: 150px;
-        top: 275px;
-        color: rgba(242, 242, 242, 0.75);
-    }
+  // START GAME PIECE POSITIONING
 
-    .message-interface {
-        padding: 15px;
-        background-color:rgba(102, 102, 102, 0.5);
-        width: 100%;
+  .track {
+    overflow-x: hidden;
+    position: absolute;
+    left: 0;
+  }
 
-        .message-interface-content {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.5);
-            font-family: Courier New, Courier, monospace;
-            display: block;
+  .track-itm {
+    position: absolute;
+  }
 
-            div {
-                display: inline-block;
-                vertical-align: top;
-                 max-width: 100%;
-            }
-        }
-    }
+  .hero {
+    position: absolute;
+    z-index: 2;
+    left: 100px;
+    top: 500px;
+  }
 
-    // START GAME PIECE POSITIONING
+  .o-1 {
+    position: absolute;
+    z-index: 2;
+    left: 1400px;
+    top: 410px;
+  }
 
-    .track {
-        overflow-x: hidden;
-        position: absolute;
-        left: 0;
-    }
+  .o-2 {
+    position: absolute;
+    z-index: 2;
+    left: 1550px;
+    top: 420px;
+  }
 
-    .track-itm {
-        position: absolute;
-    }
+  .o-3 {
+    position: absolute;
+    z-index: 2;
+    left: 1700px;
+    top: 440px;
+  }
 
-    .hero {
-        position: absolute;
-        z-index: 2;
-        left: 100px;
-        top: 500px;
-    }
+  .o-4 {
+    position: absolute;
+    z-index: 2;
+    left: 1850px;
+    top: 460px;
+  }
 
-    .o-1 {
-        position: absolute;
-        z-index: 2;
-        left: 1400px;
-        top: 410px;
-    }
+  .power-up {
+    position: absolute;
+    z-index: 1;
+  }
 
-    .o-2 {
-        position: absolute;
-        z-index: 2;
-        left: 1550px;
-        top: 420px;
-    }
+  .moving {
+    position: absolute;
+    left: 250px;
+    top: 449px;
+  }
 
-    .o-3 {
-        position: absolute;
-        z-index: 2;
-        left: 1700px;
-        top: 440px;
-    }
+  .brick {
+    position: absolute;
+    z-index: 3;
+  }
 
-    .o-4 {
-        position: absolute;
-        z-index: 2;
-        left: 1850px;
-        top: 460px;
-    }
+  .b1 {
+    position: absolute;
+    z-index: 2;
+    left: 635px;
+    top: 390px;
+  }
 
-    .power-up {
-        position: absolute;
-        z-index: 1;
-    }
+  .b1c0 {
+    position: absolute;
+    z-index: 2;
+    left: 635px;
+    top: 390px;
+  }
 
-    .moving  {
-        position: absolute;
-        left: 250px;
-        top: 449px;
-    }
+  .b1c1 {
+    position: absolute;
+    z-index: 2;
+    left: 660px;
+    top: 390px;
+  }
 
-    .brick {
-        position: absolute;
-        z-index: 3;
-    }
+  .b1c2 {
+    position: absolute;
+    z-index: 2;
+    left: 685px;
+    top: 390px;
+  }
 
-   .b1 {
-        position: absolute;
-        z-index: 2;
-        left: 635px;
-        top: 390px;
-    }
+  .b1c3 {
+    position: absolute;
+    z-index: 2;
+    left: 710px;
+    top: 390px;
+  }
 
-    .b1c0 {
-        position: absolute;
-        z-index: 2;
-        left: 635px;
-        top: 390px;
-    }
+  .b0 {
+    position: absolute;
+    z-index: 2;
+    left: 525px;
+    top: 390px;
+  }
 
-    .b1c1 {
-        position: absolute;
-        z-index: 2;
-        left: 660px;
-        top: 390px;
-    }
+  .b0c0 {
+    position: absolute;
+    z-index: 2;
+    left: 525px;
+    top: 390px;
+  }
 
-    .b1c2 {
-        position: absolute;
-        z-index: 2;
-        left: 685px;
-        top: 390px;
-    }
+  .b0c1 {
+    position: absolute;
+    z-index: 2;
+    left: 550px;
+    top: 390px;
+  }
 
-    .b1c3 {
-        position: absolute;
-        z-index: 2;
-        left: 710px;
-        top: 390px;
-    }
+  .b0c2 {
+    position: absolute;
+    z-index: 2;
+    left: 575px;
+    top: 390px;
+  }
 
-    .b0 {
-        position: absolute;
-        z-index: 2;
-        left: 525px;
-        top: 390px;
-    }
+  .b0c3 {
+    position: absolute;
+    z-index: 2;
+    left: 600px;
+    top: 390px;
+  }
 
-    .b0c0 {
-        position: absolute;
-        z-index: 2;
-        left: 525px;
-        top: 390px;
-    }
+  .b2 {
+    position: absolute;
+    z-index: 2;
+    left: 525px;
+    top: 425px;
+  }
 
-    .b0c1 {
-        position: absolute;
-        z-index: 2;
-        left: 550px;
-        top: 390px;
-    }
+  .b2c0 {
+    position: absolute;
+    z-index: 2;
+    left: 525px;
+    top: 425px;
+  }
 
-    .b0c2 {
-        position: absolute;
-        z-index: 2;
-        left: 575px;
-        top: 390px;
-    }
+  .b2c1 {
+    position: absolute;
+    z-index: 2;
+    left: 550px;
+    top: 425px;
+  }
 
-    .b0c3 {
-        position: absolute;
-        z-index: 2;
-        left: 600px;
-        top: 390px;
-    }
+  .b2c2 {
+    position: absolute;
+    z-index: 2;
+    left: 575px;
+    top: 425px;
+  }
 
-    .b2 {
-        position: absolute;
-        z-index: 2;
-        left: 525px;
-        top: 425px;
-    }
+  .b2c3 {
+    position: absolute;
+    z-index: 2;
+    left: 600px;
+    top: 425px;
+  }
 
-    .b2c0 {
-        position: absolute;
-        z-index: 2;
-        left: 525px;
-        top: 425px;
-    }
+  .b3 {
+    position: absolute;
+    z-index: 2;
+    left: 635px;
+    top: 425px;
+  }
 
-    .b2c1 {
-        position: absolute;
-        z-index: 2;
-        left: 550px;
-        top: 425px;
-    }
+  .b3c0 {
+    position: absolute;
+    z-index: 2;
+    left: 635px;
+    top: 425px;
+  }
 
-    .b2c2 {
-        position: absolute;
-        z-index: 2;
-        left: 575px;
-        top: 425px;
-    }
+  .b3c1 {
+    position: absolute;
+    z-index: 2;
+    left: 660px;
+    top: 425px;
+  }
 
-    .b2c3 {
-        position: absolute;
-        z-index: 2;
-        left: 600px;
-        top: 425px;
-    }
+  .b3c2 {
+    position: absolute;
+    z-index: 2;
+    left: 685px;
+    top: 425px;
+  }
 
-    .b3 {
-        position: absolute;
-        z-index: 2;
-        left: 635px;
-        top: 425px;
-    }
+  .b3c3 {
+    position: absolute;
+    z-index: 2;
+    left: 710px;
+    top: 425px;
+  }
 
-    .b3c0 {
-        position: absolute;
-        z-index: 2;
-        left: 635px;
-        top: 425px;
-    }
+  .b4 {
+    position: absolute;
+    z-index: 2;
+    left: 1075px;
+    top: 350px;
+  }
 
-    .b3c1 {
-        position: absolute;
-        z-index: 2;
-        left: 660px;
-        top: 425px;
-    }
+  .b4c0 {
+    position: absolute;
+    z-index: 2;
+    left: 1075px;
+    top: 350px;
+  }
 
-    .b3c2 {
-        position: absolute;
-        z-index: 2;
-        left: 685px;
-        top: 425px;
-    }
+  .b4c1 {
+    position: absolute;
+    z-index: 2;
+    left: 1100px;
+    top: 350px;
+  }
 
-    .b3c3 {
-        position: absolute;
-        z-index: 2;
-        left: 710px;
-        top: 425px;
-    }
+  .b4c2 {
+    position: absolute;
+    z-index: 2;
+    left: 1125px;
+    top: 350px;
+  }
 
-    .b4 {
-        position: absolute;
-        z-index: 2;
-        left: 1075px;
-        top: 350px;
-    }
+  .b4c3 {
+    position: absolute;
+    z-index: 2;
+    left: 1150px;
+    top: 350px;
+  }
 
-    .b4c0 {
-        position: absolute;
-        z-index: 2;
-        left: 1075px;
-        top: 350px;
-    }
+  .b5 {
+    position: absolute;
+    z-index: 2;
+    left: 1200px;
+    top: 350px;
+  }
 
-    .b4c1 {
-        position: absolute;
-        z-index: 2;
-        left: 1100px;
-        top: 350px;
-    }
+  .b5c0 {
+    position: absolute;
+    z-index: 2;
+    left: 1200px;
+    top: 350px;
+  }
 
-    .b4c2 {
-        position: absolute;
-        z-index: 2;
-        left: 1125px;
-        top: 350px;
-    }
+  .b5c1 {
+    position: absolute;
+    z-index: 2;
+    left: 1225px;
+    top: 350px;
+  }
 
-    .b4c3 {
-        position: absolute;
-        z-index: 2;
-        left: 1150px;
-        top: 350px;
-    }
+  .b5c2 {
+    position: absolute;
+    z-index: 2;
+    left: 1250px;
+    top: 350px;
+  }
 
-    .b5 {
-        position: absolute;
-        z-index: 2;
-        left: 1200px;
-        top: 350px;
-    }
+  .b5c3 {
+    position: absolute;
+    z-index: 2;
+    left: 1275px;
+    top: 350px;
+  }
 
-    .b5c0 {
-        position: absolute;
-        z-index: 2;
-        left: 1200px;
-        top: 350px;
-    }
+  .finish-line {
+    position: absolute;
+    z-index: 1;
+    left: 3600px;
+    top: 306px;
+  }
 
-    .b5c1 {
-        position: absolute;
-        z-index: 2;
-        left: 1225px;
-        top: 350px;
-    }
+  .nemisis-forward {
+    position: absolute;
+    z-index: 1;
+    left: 3100px;
+    top: 309px;
+  }
 
-    .b5c2 {
-        position: absolute;
-        z-index: 2;
-        left: 1250px;
-        top: 350px;
-    }
+  .nemisis-forward-hit {
+    position: absolute;
+    z-index: 1;
+    left: 3100px;
+    top: 309px;
+  }
 
-    .b5c3 {
-        position: absolute;
-        z-index: 2;
-        left: 1275px;
-        top: 350px;
-    }
+  .hidden {
+    display: none !important;
+  }
 
-    .finish-line {
-        position: absolute;
-        z-index: 1;
-        left: 3600px;
-        top: 306px;
-    }
+  .nemisis-reverse {
+    position: absolute;
+    z-index: 1;
+    left: 3100px;
+    top: 309px;
+  }
 
-    .nemisis-forward {
-        position: absolute;
-        z-index: 1;
-        left: 3100px;
-        top: 309px;        
-    }
+  .nemisis-reverse-hit {
+    position: absolute;
+    z-index: 1;
+    left: 3100px;
+    top: 309px;
+  }
 
-    .hidden {
-        display: none !important;
-    }
+  .nemisis {
+    display: block;
 
-    .nemisis-reverse {
-        position: absolute;
-        z-index: 1;
-        left: 3100px;
-        top: 309px;
-    }
+    -webkit-transition: opacity 2s ease;
+    -moz-transition: opacity 2s ease;
+    -o-transition: opacity 2s ease;
+    -ms-transition: opacity 2s ease;
+    transition: opacity 2s ease;
+  }
 
-    .nemisis {
-        display: block;
-    }
-
-    // END GAME PIECE POSITIONING
+  // END GAME PIECE POSITIONING
 }
-
-
-
