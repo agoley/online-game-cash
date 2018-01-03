@@ -3,19 +3,20 @@ import { Http, RequestOptions, Headers } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 import { Router } from '@angular/router';
+import { BehaviorSubject } from "rxjs";
 
 import { User } from '../../models/user.interface'
 import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class UserService {
-  user: Subject<User>;
+  user: BehaviorSubject<User>;
   user$: Observable<User>;
   router: Router;
 
   constructor(private http: Http,  private _router: Router) { 
     this.router = _router;
-    this.user = new Subject();
+    this.user = new BehaviorSubject(null);
     this.user$ = this.user.asObservable();
 
     var token = localStorage.getItem('token');
@@ -33,9 +34,13 @@ export class UserService {
     this.user.next(user);
   }
 
+  getUserObservable() {
+    return this.user.asObservable();
+  }
+
   signout() {
     localStorage.clear();
-    this.user.next();
+    this.user.next(null);
   }
 
   reauth(token, email) {

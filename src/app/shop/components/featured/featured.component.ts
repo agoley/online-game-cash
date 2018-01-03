@@ -5,8 +5,7 @@ import { Game } from "app/models/game.interface";
 import { environment } from '../../../../environments/environment';
 import { GameService } from "app/shared/services/game.service";
 import { trigger, animate, transition, style, state } from "@angular/animations";
-
-
+import { UserService } from 'app/shared/services/user.service';
 
 @Component({
   host: {
@@ -85,6 +84,8 @@ export class FeaturedComponent implements OnInit {
   gameInDetail: Game;
   showToast: boolean;
   showGame: boolean;
+  user: any;
+  _user: Subscription;
 
   filter = {
     genre: {
@@ -106,12 +107,17 @@ export class FeaturedComponent implements OnInit {
     }
   };
 
-  constructor(private gameService: GameService, private _eref: ElementRef, private cd: ChangeDetectorRef) {
+  constructor(private gameService: GameService, private _eref: ElementRef, private cd: ChangeDetectorRef,  private userService: UserService) {
     this.filteringByConsole = false;
     this.filteringByGenre = false;
     this.showToast = false;
     this.gameInFocus = null;
     this.showGame = true;
+
+    this.user = userService.user.getValue();
+
+    this._user = userService.getUserObservable().subscribe(data => { this.user = data});
+
 
     this._games = gameService.getObvservableGames()
       .subscribe(data => this.processGames(this.processGames(data)));
@@ -476,6 +482,19 @@ export class FeaturedComponent implements OnInit {
     game.state = 'inactive';
     this.gameInDetail = null;
     this.showToast = true;
+
+    if (!this.user) {
+      // Create a guest cart.
+    } else {
+      if (!this.user.cart) {
+
+        // Create new cart.
+      } else {
+        
+
+        // Add transaction to the cart.
+      }
+    }
   }
 
   onCloseToast() {

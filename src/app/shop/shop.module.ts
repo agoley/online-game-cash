@@ -5,8 +5,6 @@ import { MdCheckboxModule } from '@angular/material';
 import { MdSnackBarModule } from '@angular/material';
 
 import { ShopRoutingModule } from './shop-routing.module';
-import { GamesComponent } from './components/games/games.component';
-import { ShopComponent } from './components/shop/shop.component';
 import { FeaturedComponent } from './components/featured/featured.component';
 import { SharedModule } from "app/shared/shared.module";
 import { GameDetailsComponent } from './components/game-details/game-details.component';
@@ -21,13 +19,10 @@ import { GameDetailsComponent } from './components/game-details/game-details.com
     MdSnackBarModule
   ],
   declarations: [
-    GamesComponent,
-    ShopComponent,
     FeaturedComponent,
     GameDetailsComponent,
   ],
   exports: [
-    ShopComponent, 
     ShopRoutingModule
   ]
 })
